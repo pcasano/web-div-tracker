@@ -23,6 +23,7 @@
     padding-bottom: 12px;
     font-size: 16px;
     font-weight: normal; 
+    cursor: pointer;
 }
 
 .menu-item:hover {

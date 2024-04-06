@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Calendar</h1>
+
+    <div class="card-grid">
+        <ng-container *ngFor="let day of daysOfWeek">
+            <mat-card class="day-name-card ">
+                <mat-card-content>
+                  {{ day }}
+                </mat-card-content>
+              </mat-card>
+        </ng-container>
+
+        <ng-container *ngFor="let day of numbers">
+          <mat-card class="calendar-card">
+            <mat-card-content>
+              {{ day }}
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </div>
+</div>>
