@@ -3,5 +3,9 @@
   }
   
   app-menu {
-    width: 250px; /* Adjust as needed */
+    background-color: rgb(80, 162, 255);
+    color: white;
+    width: 200px;
+    height: 1200px; /* Adjust as needed */
   }
+
