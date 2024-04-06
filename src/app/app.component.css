@@ -1,0 +1,7 @@
+#app-container {
+    display: flex;
+  }
+  
+  app-menu {
+    width: 250px; /* Adjust as needed */
+  }
