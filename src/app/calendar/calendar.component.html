@@ -10,12 +10,21 @@
               </mat-card>
         </ng-container>
 
-        <ng-container *ngFor="let day of numbers">
-          <mat-card class="calendar-card">
-            <mat-card-content>
-              {{ day }}
-            </mat-card-content>
-          </mat-card>
+        <ng-container *ngFor="let day of monthDaysArray">
+
+          <ng-container *ngIf="day>0; else elseBlock">
+            <mat-card class="calendar-card">
+              <mat-card-content>
+                {{ day }}
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+
+          <ng-template #elseBlock>
+            <mat-card class="empty-card" >
+            </mat-card>
+          </ng-template >
+
         </ng-container>
       </div>
-</div>>
+</div>
