@@ -15,9 +15,7 @@ export class CalendarComponent implements OnInit{
     const currentDate = new Date();
     // Get year and month
     const year = currentDate.getFullYear();
-    // const month = currentDate.getMonth() + 1;
-    const month = 6;
-
+    const month = currentDate.getMonth() + 1;
     // Create a new date object for the first day of next month
     const firstDayOfNextMonth = new Date(year, month, 1);
     // Subtract 1 day from the first day of next month to get the last day of the current month
