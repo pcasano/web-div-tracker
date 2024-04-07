@@ -11,6 +11,9 @@ export class CalendarComponent implements OnInit{
   monthDaysArray: number[] = [];
   firstDayOfWeek: number;
 
+
+  dividendDay: number[] = [1, 1 ,1 , 11, 22, 24, 30, 30];
+
   ngOnInit(): void {
     const currentDate = new Date();
     // Get year and month
@@ -36,5 +39,13 @@ export class CalendarComponent implements OnInit{
     const firstDayOfMonth = new Date(year, month - 1, 1);
     return  firstDayOfMonth.getDay() - 1
 }
+
+  getDividendsDayForCalendar(givenDay: number): number[] {
+    return this.dividendDay.filter(day => day===givenDay);
+  }
+
+  showDividends(givenDay: number) {
+    this.dividendDay.filter(day => day===givenDay).forEach(div => console.log(div));
+  }
 
 }

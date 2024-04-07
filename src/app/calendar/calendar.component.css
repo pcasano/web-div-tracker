@@ -12,6 +12,15 @@
     align-items: center;
   }
 
+  .calendar-dividend-day {
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(147, 202, 150);
+  }
+
   .day-name-card {
     height: 40px;
     width: 80px;
@@ -25,4 +34,12 @@
     height: 80px;
     width: 80px;
     background-color: rgb(233, 234, 238);
+  }
+
+  .mat-badge-content {
+    background-color: rgb(71, 100, 216);
+    color: white;
+    position: absolute;
+    top: 0px; /* Adjust as needed */
+    right: 2px; /* Adjust as needed */
   }
