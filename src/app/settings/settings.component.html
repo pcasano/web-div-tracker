@@ -1,1 +1,13 @@
-<p>settings works!</p>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Enter base url" [formControl]="baseUrlControl">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Token</mat-label>
+      <input matInput placeholder="Enter your token" [formControl]="tokenControl">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+  </form>

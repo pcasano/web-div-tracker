@@ -9,6 +9,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 import { SettingsComponent } from './settings/settings.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import { SettingsComponent } from './settings/settings.component';
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),
