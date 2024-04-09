@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -9,24 +9,19 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class SettingsComponent {
 
 
-  baseUrl: string;
-  token: string;
+    userForm: FormGroup = new FormGroup({
+      baseUrl: new FormControl('', [Validators.required]),
+      token: new FormControl('', [Validators.required]),
+      dailyQueryId: new FormControl('', [Validators.required]),
+      monthlyQueryId: new FormControl('', [Validators.required]),
+      lastMonthQueryId: new FormControl('', [Validators.required])
+    });
 
-  baseUrlControl = new FormControl('');
-  tokenControl = new FormControl('');
 
-  userForm: FormGroup = new FormGroup({
-    baseUrl: new FormControl('', [Validators.required]),
-    token: new FormControl('', [Validators.required]),
-    dailyQueryId: new FormControl('', [Validators.required]),
-    monthlyQueryId: new FormControl('', [Validators.required]),
-    lastMonthQueryId: new FormControl('', [Validators.required])
-});
-
-submitForm() {
+    onSubmit() {
   console.log('First Name:', this.userForm.get("baseUrl")?.value);
-  console.log('Last Name:', this.token);
-  // Here you can implement form submission logic
+
+
 }
 
 }

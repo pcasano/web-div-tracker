@@ -1,14 +1,18 @@
-  <form>
+<div class="container">
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
-      <mat-label>First Name</mat-label>
-      <input matInput placeholder="Enter base url" [formControl]="baseUrlControl">
+      <mat-label>Base url</mat-label>
+      <input matInput placeholder="Enter base url" formControlName="baseUrl">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Token</mat-label>
-      <input matInput placeholder="Enter your token" [formControl]="tokenControl">
+      <input matInput placeholder="Enter your token" formControlName="token">
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>
+
+</div>
   
