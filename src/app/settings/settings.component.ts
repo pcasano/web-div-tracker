@@ -24,7 +24,7 @@ export class SettingsComponent {
 });
 
 submitForm() {
-  console.log('First Name:', this.baseUrl);
+  console.log('First Name:', this.userForm.get("baseUrl")?.value);
   console.log('Last Name:', this.token);
   // Here you can implement form submission logic
 }
