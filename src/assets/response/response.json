@@ -1,0 +1,67 @@
+[
+    {
+        "id": "ABBV",
+        "name": "Abbvie",
+        "dividendPaymentDate": "01.02.2024"
+    },
+    {
+        "id": "ADM",
+        "name": "AbbArchie Danield Midland",
+        "dividendPaymentDate": "03.02.2024"
+    },
+    {
+        "id": "CLX",
+        "name": "Clorox",
+        "dividendPaymentDate": "01.04.2024"
+    },
+    {
+        "id": "DGE",
+        "name": "Diageo",
+        "dividendPaymentDate": "01.04.2024"
+    },
+    {
+        "id": "CSCO",
+        "name": "Cisco",
+        "dividendPaymentDate": "01.04.2024"
+    },
+    {
+        "id": "HSY",
+        "name": "Hersheys",
+        "dividendPaymentDate": "12.04.2024"
+    },
+    {
+        "id": "KO",
+        "name": "The Cocacola Compnay",
+        "dividendPaymentDate": "08.04.2024"
+    },
+    {
+        "id": "O",
+        "name": "Realty Income",
+        "dividendPaymentDate": "19.04.2024"
+    },
+    {
+        "id": "HSY",
+        "name": "Hersheys",
+        "dividendPaymentDate": "15.04.2024"
+    },
+    {
+        "id": "PEP",
+        "name": "Pepsi",
+        "dividendPaymentDate": "30.04.2024"
+    },
+    {
+        "id": "TXN",
+        "name": "Texas Instruments",
+        "dividendPaymentDate": "30.04.2024"
+    },
+    {
+        "id": "WSO",
+        "name": "Watsco",
+        "dividendPaymentDate": "06.06.2024"
+    },
+    {
+        "id": "SPG",
+        "name": "Simon Property Group",
+        "dividendPaymentDate": "07.06.2024"
+    }
+]

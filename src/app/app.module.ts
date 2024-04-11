@@ -12,6 +12,11 @@ import { SettingsComponent } from './settings/settings.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { StoreModule } from '@ngrx/store';
+import { dataReducer } from './store/reducers/data.reducer'; 
+import { EffectsModule } from '@ngrx/effects';
+import { DataEffects } from './store/effects/data.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,10 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    StoreModule.forRoot({ data: dataReducer }),
+    EffectsModule.forRoot(DataEffects),
+    HttpClientModule 
 
   ],
   providers: [

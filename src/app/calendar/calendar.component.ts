@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { fetchData } from '../store/actions/data.actions';
+import { selectData, selectDataLoading, selectDataError } from '../store/selectors/data.selectors';
+import { Data } from '../store/models/data.model';
+
 
 @Component({
   selector: 'app-calendar',
@@ -6,6 +12,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent implements OnInit{
+
+  constructor(private store: Store<{data: any}>) {
+    this.data$ = store.pipe(select(selectData));
+    this.loading$ = store.pipe(select(selectDataLoading));
+    this.error$ = store.pipe(select(selectDataError));
+  }
+
+  data$: Observable<any>;
+  loading$: Observable<boolean>;
+  error$: Observable<any>;
+
+  companies: any[] = [];
 
   daysOfWeek: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   monthDaysArray: number[] = [];
@@ -33,6 +51,27 @@ export class CalendarComponent implements OnInit{
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       this.monthDaysArray.push(i);
     }
+
+
+    // Fetch data when the component initializes
+    
+
+    this.data$.subscribe(
+      {
+        next: (res) => {
+          if(res) {
+            res.forEach((company: any) => this.companies.push({
+              id: company.id,
+              name: company.name,
+              dividendPaymentDate: company.dividendPaymentDate
+            }));
+          }
+          console.log(res);
+        }, 
+        error: (error) => console.error('Error fetching data:', error)
+      }
+    )
+    this.store.dispatch(fetchData());
   }
 
   getFirstDayOfWeek(year: number, month: number): number {
