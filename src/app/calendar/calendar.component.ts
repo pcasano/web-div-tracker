@@ -87,4 +87,21 @@ export class CalendarComponent implements OnInit{
     this.dividendDay.filter(day => day===givenDay).forEach(div => console.log(div));
   }
 
+  isInCurrentMonth(dateString: string): boolean {
+    const parts = dateString.split('.');
+    if (parts.length !== 3) {
+        throw new Error("Invalid date format. Expected dd.MM.yyyy");
+    }
+
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+    const year = parseInt(parts[2], 10);
+
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
+    return currentYear === year && currentMonth === month;
+}
+
 }
