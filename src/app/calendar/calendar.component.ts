@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store, compose, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { fetchData } from '../store/actions/data.actions';
 import { selectData, selectDataLoading, selectDataError } from '../store/selectors/data.selectors';
@@ -24,6 +24,8 @@ export class CalendarComponent implements OnInit{
   error$: Observable<any>;
 
   companies: any[] = [];
+  companiesToDisplay: Data[] = [];
+  selectedDay: number;
 
   daysOfWeek: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   monthDaysArray: number[] = [];
@@ -57,7 +59,8 @@ export class CalendarComponent implements OnInit{
             res.forEach((company: any) => this.companies.push({
               id: company.id,
               name: company.name,
-              dividendPaymentDate: company.dividendPaymentDate
+              dividendPaymentDate: company.dividendPaymentDate,
+              imagePath: "../../assets/images/" + company.id + ".png"
             }));
           }
         }, 
@@ -78,15 +81,22 @@ export class CalendarComponent implements OnInit{
   }
 
   showDividendsGivenDay(givenDay: number) {
-    this.getDividendsDayForCalendar(givenDay).forEach(company => console.log(company));
+    this.companiesToDisplay = [];
+    this.companiesToDisplay = this.getDividendsDayForCalendar(givenDay);
+    this.companiesToDisplay.forEach(company => console.log(company));
+    this.selectedDay = givenDay;
   }
 
   showDividendsCurrentMonth() {
-    this.companies.filter(
-      dividend => this.isInCurrentMonth(dividend.dividendPaymentDate)).forEach(company => console.log(company));
+    this.companiesToDisplay = [];
+    this.companiesToDisplay = this.companies.filter(
+      dividend => this.isInCurrentMonth(dividend.dividendPaymentDate));
+      this.companiesToDisplay.forEach(company => console.log(company));
   }
 
   showFullPortfolio() {
+    this.companiesToDisplay = [];
+    this.companiesToDisplay = this.companies;
     this.companies.forEach(company => console.log(company));
   }
 

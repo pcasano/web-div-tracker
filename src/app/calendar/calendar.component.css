@@ -43,3 +43,26 @@
     top: 0px; /* Adjust as needed */
     right: 2px; /* Adjust as needed */
   }
+
+  .container-contents {
+    display: flex;
+    flex-direction: row; 
+  }
+
+  .company-displays {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 30px;    
+  }
+
+  .buttons-block {
+    display: flex;
+    flex-direction: row ;
+    margin-top: 45px;
+  }
+
+  button {
+    margin-right: 30px;
+    font-size: 13px;
+    padding: 12px 24px;
+  }

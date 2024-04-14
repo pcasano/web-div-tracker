@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Calendar</h1>
-
-    <div class="card-grid">
+    <div class="container-contents">
+      <div class="card-grid">
         <ng-container *ngFor="let day of daysOfWeek">
             <mat-card class="day-name-card ">
                 <mat-card-content>
@@ -29,17 +29,26 @@
                 </mat-card-content>
               </mat-card>
             </ng-template >
-  
-
-
-
           </ng-container>
-
           <ng-template #isNotADay>
             <mat-card class="empty-card" >
             </mat-card>
           </ng-template >
-
         </ng-container>
       </div>
+
+    <div class="company-displays">      
+      <ng-container *ngFor="let company of companiesToDisplay">
+        <mat-card class="day-name-card">
+          <img mat-card-image [src]="company.imagePath" alt="Placeholder image" height="80px" width="80px">
+        </mat-card></ng-container>
+    </div>
+
+    </div>
+
+    <div class="buttons-block">
+      <button mat-button (click)="showDividendsCurrentMonth()">Current month</button>
+      <button mat-button (click)="showFullPortfolio()">Portfolio</button>
+    </div>
+
 </div>

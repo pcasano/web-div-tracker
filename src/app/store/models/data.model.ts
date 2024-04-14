@@ -1,5 +1,6 @@
 export interface Data {
-    id: number;
+    id: string;
     name: string;
     dividendPaymentDate: string;
+    imagePath: string
   }
