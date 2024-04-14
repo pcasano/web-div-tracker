@@ -44,7 +44,12 @@
     right: 2px; /* Adjust as needed */
   }
 
-  .container-contents {
+  .container-contents-column {
+    display: flex;
+    flex-direction: column; 
+  }
+
+  .container-contents-row {
     display: flex;
     flex-direction: row; 
   }
