@@ -30,8 +30,6 @@ export class CalendarComponent implements OnInit{
   firstDayOfWeek: number;
 
 
-  dividendDay: number[] = [1, 1 ,1 , 11, 22, 24, 30, 30];
-
   ngOnInit(): void {
     const currentDate = new Date();
     // Get year and month
@@ -52,10 +50,6 @@ export class CalendarComponent implements OnInit{
       this.monthDaysArray.push(i);
     }
 
-
-    // Fetch data when the component initializes
-    
-
     this.data$.subscribe(
       {
         next: (res) => {
@@ -66,7 +60,6 @@ export class CalendarComponent implements OnInit{
               dividendPaymentDate: company.dividendPaymentDate
             }));
           }
-          console.log(res);
         }, 
         error: (error) => console.error('Error fetching data:', error)
       }
@@ -79,12 +72,22 @@ export class CalendarComponent implements OnInit{
     return  firstDayOfMonth.getDay() - 1
 }
 
-  getDividendsDayForCalendar(givenDay: number): number[] {
-    return this.dividendDay.filter(day => day===givenDay);
+  getDividendsDayForCalendar(givenDay: number): Data[] {
+    return this.companies.filter(
+      dividend => this.isInCurrentMonth(dividend.dividendPaymentDate) && this.isSameDay(dividend.dividendPaymentDate, givenDay));
   }
 
-  showDividends(givenDay: number) {
-    this.dividendDay.filter(day => day===givenDay).forEach(div => console.log(div));
+  showDividendsGivenDay(givenDay: number) {
+    this.getDividendsDayForCalendar(givenDay).forEach(company => console.log(company));
+  }
+
+  showDividendsCurrentMonth() {
+    this.companies.filter(
+      dividend => this.isInCurrentMonth(dividend.dividendPaymentDate)).forEach(company => console.log(company));
+  }
+
+  showFullPortfolio() {
+    this.companies.forEach(company => console.log(company));
   }
 
   isInCurrentMonth(dateString: string): boolean {
@@ -104,4 +107,12 @@ export class CalendarComponent implements OnInit{
     return currentYear === year && currentMonth === month;
 }
 
+  isSameDay(dateString: string, calendarDay: number ): boolean {
+    const parts = dateString.split('.');
+    if (parts.length !== 3) {
+        throw new Error("Invalid date format. Expected dd.MM.yyyy");
+    }
+    const day = parseInt(parts[0], 10);
+    return day === calendarDay;
+}
 }
