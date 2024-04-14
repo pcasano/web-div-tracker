@@ -26,7 +26,9 @@ export class CalendarComponent implements OnInit{
   companies: any[] = [];
   companiesToDisplay: Data[] = [];
   selectedDay: number;
+
   isCompanyHovered: boolean = false;
+  companyToDisplayOnHover: Data;
 
   daysOfWeek: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   monthDaysArray: number[] = [];
@@ -126,4 +128,10 @@ export class CalendarComponent implements OnInit{
     const day = parseInt(parts[0], 10);
     return day === calendarDay;
 }
+
+  setCompanyToDisplayAfterHover(company: Data) {
+    this.isCompanyHovered = true;
+    this.companyToDisplayOnHover = company;
+  }
+
 }
