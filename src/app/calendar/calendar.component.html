@@ -23,7 +23,7 @@
               </mat-card>
             </ng-container>
             <ng-template #isNotDividend>
-              <mat-card class="calendar-card">
+              <mat-card class="calendar-card" (click)="showDividendsGivenDay(day)">
                 <mat-card-content>
                   {{ day }}
                 </mat-card-content>
@@ -37,18 +37,36 @@
         </ng-container>
       </div>
 
-    <div class="company-displays">      
-      <ng-container *ngFor="let company of companiesToDisplay">
-        <mat-card class="company-displays">
-          <img mat-card-image [src]="company.imagePath" alt="Placeholder image" height="80px" width="80px">
-        </mat-card></ng-container>
-    </div>
+      <div>
+        <div class="company-displays">      
+          <div *ngFor="let company of companiesToDisplay">
+            <mat-card class="company-displays">
+              <img mat-card-image [src]="company.imagePath" alt="Placeholder image" height="80px" width="80px" (mouseenter)="isCompanyHovered = true" (mouseleave)="isCompanyHovered = false">
+            </mat-card>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div>
+        <mat-card class="custom-card" *ngIf="isCompanyHovered">
+          <mat-card-content>
+            asdasdasd
+          </mat-card-content>
+        </mat-card>
+      </div>
 
     </div>
+
 
     <div class="buttons-block">
       <button mat-button (click)="showDividendsCurrentMonth()">Current month</button>
       <button mat-button (click)="showFullPortfolio()">Portfolio</button>
+
+
     </div>
 
 </div>

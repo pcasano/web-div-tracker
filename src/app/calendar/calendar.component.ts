@@ -26,6 +26,7 @@ export class CalendarComponent implements OnInit{
   companies: any[] = [];
   companiesToDisplay: Data[] = [];
   selectedDay: number;
+  isCompanyHovered: boolean = false;
 
   daysOfWeek: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   monthDaysArray: number[] = [];

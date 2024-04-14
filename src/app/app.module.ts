@@ -17,6 +17,7 @@ import { dataReducer } from './store/reducers/data.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { DataEffects } from './store/effects/data.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     StoreModule.forRoot({ data: dataReducer }),
     EffectsModule.forRoot(DataEffects),
-    HttpClientModule 
+    HttpClientModule,
+    MatTooltipModule
 
   ],
   providers: [
