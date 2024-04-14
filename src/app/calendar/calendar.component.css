@@ -51,9 +51,12 @@
 
   .company-displays {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    margin: 20px;    
+    grid-template-columns: repeat(7, 1fr);
+    margin: 10px;    
     margin-top: 0px; 
+  }
+
+  .company-card-displays {
     width: 80px;
     height: 80px;
   }

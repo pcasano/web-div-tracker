@@ -38,35 +38,27 @@
       </div>
 
       <div>
-        <div class="company-displays">      
+        <div class="company-displays" style="margin-left: 30px;">  
           <div *ngFor="let company of companiesToDisplay">
-            <mat-card class="company-displays">
+            <mat-card class="company-displays company-card-displays">
               <img mat-card-image [src]="company.imagePath" alt="Placeholder image" height="80px" width="80px" (mouseenter)="isCompanyHovered = true" (mouseleave)="isCompanyHovered = false">
             </mat-card>
           </div>
-
         </div>
 
-
+        <div style="margin-top: 45px; margin-left: 40px;">
+          <mat-card class="custom-card" *ngIf="isCompanyHovered">
+            <mat-card-content>
+              Hello
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
-
-
-      <div>
-        <mat-card class="custom-card" *ngIf="isCompanyHovered">
-          <mat-card-content>
-            asdasdasd
-          </mat-card-content>
-        </mat-card>
-      </div>
-
     </div>
-
 
     <div class="buttons-block">
       <button mat-button (click)="showDividendsCurrentMonth()">Current month</button>
       <button mat-button (click)="showFullPortfolio()">Portfolio</button>
 
-
     </div>
-
 </div>
