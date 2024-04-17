@@ -1,4 +1,4 @@
-export interface Data {
+export interface Company {
     id: string;
     name: string;
     dividendPaymentDate: string;

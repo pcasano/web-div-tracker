@@ -1,34 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, compose, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { fetchData } from '../store/actions/data.actions';
-import { selectData, selectDataLoading, selectDataError } from '../store/selectors/data.selectors';
-import { Data } from '../store/models/data.model';
+import { CompanyStore } from '../store/company-store';
+import { Company } from '../store/models/company.model';
 
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrl: './calendar.component.css'
+  styleUrl: './calendar.component.css',
+  providers: [CompanyStore],
 })
 export class CalendarComponent implements OnInit{
 
-  constructor(private store: Store<{data: any}>) {
-    this.data$ = store.pipe(select(selectData));
-    this.loading$ = store.pipe(select(selectDataLoading));
-    this.error$ = store.pipe(select(selectDataError));
-  }
+  companies$: Observable<Company[]>;
 
-  data$: Observable<any>;
-  loading$: Observable<boolean>;
-  error$: Observable<any>;
+  constructor(private readonly companyStore: CompanyStore) {}
+
+  // data$: Observable<any>;
+  // loading$: Observable<boolean>;
+  // error$: Observable<any>;
 
   companies: any[] = [];
-  companiesToDisplay: Data[] = [];
+  companiesToDisplay: Company[] = [];
   selectedDay: number;
 
   isCompanyHovered: boolean = false;
-  companyToDisplayOnHover: Data;
+  companyToDisplayOnHover: Company;
 
   daysOfWeek: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   monthDaysArray: number[] = [];
@@ -55,7 +53,10 @@ export class CalendarComponent implements OnInit{
       this.monthDaysArray.push(i);
     }
 
-    this.data$.subscribe(
+    this.companyStore.fetchCompany(); // Call fetchCompany instead of fetchData
+    this.companies$ = this.companyStore.company$; 
+
+    this.companies$.subscribe(
       {
         next: (res) => {
           if(res) {
@@ -70,7 +71,6 @@ export class CalendarComponent implements OnInit{
         error: (error) => console.error('Error fetching data:', error)
       }
     )
-    this.store.dispatch(fetchData());
   }
 
   getFirstDayOfWeek(year: number, month: number): number {
@@ -78,7 +78,7 @@ export class CalendarComponent implements OnInit{
     return  firstDayOfMonth.getDay() - 1
 }
 
-  getDividendsDayForCalendar(givenDay: number): Data[] {
+  getDividendsDayForCalendar(givenDay: number): Company[] {
     return this.companies.filter(
       dividend => this.isInCurrentMonth(dividend.dividendPaymentDate) && this.isSameDay(dividend.dividendPaymentDate, givenDay));
   }
@@ -129,7 +129,7 @@ export class CalendarComponent implements OnInit{
     return day === calendarDay;
 }
 
-  setCompanyToDisplayAfterHover(company: Data) {
+  setCompanyToDisplayAfterHover(company: Company) {
     this.isCompanyHovered = true;
     this.companyToDisplayOnHover = company;
   }
