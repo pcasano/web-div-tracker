@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, compose, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CompanyStore } from '../store/company-store';
 import { Company } from '../store/models/company.model';
@@ -17,11 +16,7 @@ export class CalendarComponent implements OnInit{
 
   constructor(private readonly companyStore: CompanyStore) {}
 
-  // data$: Observable<any>;
-  // loading$: Observable<boolean>;
-  // error$: Observable<any>;
-
-  companies: any[] = [];
+  companies: Company[] = [];
   companiesToDisplay: Company[] = [];
   selectedDay: number;
 
