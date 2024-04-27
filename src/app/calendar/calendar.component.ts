@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyStore } from '../store/company-store';
 import { Company } from '../store/models/company.model';
+import { ContentObserver } from '@angular/cdk/observers';
 
 
 @Component({
@@ -12,7 +13,9 @@ import { Company } from '../store/models/company.model';
 })
 export class CalendarComponent implements OnInit{
 
-  companies$: Observable<Company[]>;
+  //companies$: Observable<Company[]>;
+
+  companies$ = this.companyStore.companies$;
 
   constructor(private readonly companyStore: CompanyStore) {}
 
@@ -48,25 +51,7 @@ export class CalendarComponent implements OnInit{
       this.monthDaysArray.push(i);
     }
 
-    this.companyStore.fetchCompany(); // Call fetchCompany instead of fetchData
-    this.companies$ = this.companyStore.company$; 
-
-    this.companies$.subscribe(
-      {
-        next: (res) => {
-          if(res) {
-            res.forEach((company: any) => this.companies.push({
-              id: company.id,
-              name: company.name,
-              dividendPaymentDate: company.dividendPaymentDate,
-              imagePath: "../../assets/images/" + company.id + ".png"
-            }));
-          }
-        }, 
-        error: (error) => console.error('Error fetching data:', error)
-      }
-    )
-  }
+    }
 
   getFirstDayOfWeek(year: number, month: number): number {
     const firstDayOfMonth = new Date(year, month - 1, 1);
