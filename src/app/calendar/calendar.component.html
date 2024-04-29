@@ -14,9 +14,9 @@
 
           <ng-container *ngIf="day>0; else isNotADay">
 
-            <ng-container *ngIf="getDividendsDayForCalendar(day).length>0; else isNotDividend">
+            <ng-container *ngIf="!companyInProgress && getDividendsDayForCalendar(day) && getDividendsDayForCalendar(day)!.length > 0; else isNotDividend">
               <mat-card class="calendar-dividend-day" (click)="showDividendsGivenDay(day)">
-                <mat-badge class="mat-badge-content" mat-card-badge [matBadge]="getDividendsDayForCalendar(day).length" matBadgeColor="accent" matBadgeSize="medium" matBadgePosition="above after"></mat-badge>
+                <mat-badge class="mat-badge-content" mat-card-badge [matBadge]="getDividendsDayForCalendar(day)?.length" matBadgeColor="accent" matBadgeSize="medium" matBadgePosition="above after"></mat-badge>
                 <mat-card-content>
                   {{ day }}
                 </mat-card-content>

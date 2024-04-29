@@ -13,8 +13,13 @@ export class CompanyService {
   constructor(private http: HttpClient) {}
 
 
-fetchCompany(): Observable<Company> {
-    console.log("in service function");
-    return this.http.get<Company>(this.apiUrl);
+// fetchCompany(): Observable<Company> {
+//     console.log("in service function");
+//     return this.http.get<Company>(this.apiUrl);
+//   }
+
+  getCompanies(): Observable<Company[]> {
+    return this.http.get<Company[]>(this.apiUrl);
   }
+
 }
