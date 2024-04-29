@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { CompanyStore } from '../store/company-store';
 import { Company } from '../store/models/company.model';
 import { ContentObserver } from '@angular/cdk/observers';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -19,8 +20,11 @@ export class CalendarComponent implements OnInit{
 
   constructor(private readonly companyStore: CompanyStore) {}
 
-  companies: Company[] = [];
-  companiesToDisplay: Company[] = [];
+  companies: Company[] | undefined | null = [];
+  companyInProgress: boolean;
+  companyError: HttpErrorResponse | undefined | null = null;
+
+  companiesToDisplay: Company[] | undefined | null = [];
   selectedDay: number;
 
   isCompanyHovered: boolean = false;
@@ -50,6 +54,9 @@ export class CalendarComponent implements OnInit{
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       this.monthDaysArray.push(i);
     }
+    this.companyStore.companies$.subscribe(cs => this.companies = cs);
+    this.companyStore.companyInProgress$.subscribe(progress => this.companyInProgress = progress);
+    this.companyStore.companyError$.subscribe(error => this.companyError = error);
 
     }
 
@@ -58,29 +65,29 @@ export class CalendarComponent implements OnInit{
     return  firstDayOfMonth.getDay() - 1
 }
 
-  getDividendsDayForCalendar(givenDay: number): Company[] {
-    return this.companies.filter(
+  getDividendsDayForCalendar(givenDay: number): Company[] | undefined | null {
+    return this.companies?.filter(
       dividend => this.isInCurrentMonth(dividend.dividendPaymentDate) && this.isSameDay(dividend.dividendPaymentDate, givenDay));
   }
 
   showDividendsGivenDay(givenDay: number) {
     this.companiesToDisplay = [];
     this.companiesToDisplay = this.getDividendsDayForCalendar(givenDay);
-    this.companiesToDisplay.forEach(company => console.log(company));
+    this.companiesToDisplay?.forEach(company => console.log(company));
     this.selectedDay = givenDay;
   }
 
   showDividendsCurrentMonth() {
     this.companiesToDisplay = [];
-    this.companiesToDisplay = this.companies.filter(
+    this.companiesToDisplay = this.companies?.filter(
       dividend => this.isInCurrentMonth(dividend.dividendPaymentDate));
-      this.companiesToDisplay.forEach(company => console.log(company));
+      this.companiesToDisplay?.forEach(company => console.log(company));
   }
 
   showFullPortfolio() {
     this.companiesToDisplay = [];
     this.companiesToDisplay = this.companies;
-    this.companies.forEach(company => console.log(company));
+    this.companies?.forEach(company => console.log(company));
   }
 
   isInCurrentMonth(dateString: string): boolean {
